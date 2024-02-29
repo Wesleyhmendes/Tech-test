@@ -10,11 +10,7 @@ O projeto foi construído utilizando a versão 14.1 no Next.js e utilizando a bi
 
 O aplicação foi dividida em componentes para uma melhor leitura e organização do código.
 
-
-<div align="center">
 ![iPhone-13.png](./public//iPhone-13.png)
-</div>
-
 
 ## Instalação
 
