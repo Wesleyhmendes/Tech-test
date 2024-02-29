@@ -1,7 +1,4 @@
 'use client'
-import carPic from '../../../public/mini_coper.jpg';
-import Image from 'next/image';
-import { Rating } from '@mui/material';
 import React from 'react';
 import Actions from './Actions';
 import CarPicture from './Image';
@@ -11,9 +8,7 @@ const TableDesktop = () => {
   const columns = ['CAR', 'NEXT RESERVATION', 'STATUS', 'RATING', 'ACTIONS'];
 
   return (
-    <div
-      className="hidden overflow-x-auto h-screen md:flex justify-center items-center"
-    >
+    <div className="hidden overflow-x-auto h-screen md:flex justify-center items-center">
       <table
         className="table-auto w-11/12 mx-auto border-collapse border rounded-lg border-gray-200"
       >

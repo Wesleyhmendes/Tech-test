@@ -12,7 +12,10 @@ const TableMobile = () => {
           const lines = [];
           for (let i = 0; i < 3; i += 1) {
             lines.push(
-              <div key={ i } className="flex items-start  justify-between p-4 border-b border-gray-200">
+              <div
+                key={ i }
+                className="flex items-start  justify-between p-4 border-b border-gray-200 md:hidden"
+              >
                 <div className="flex items-center">
                   <CarPicture />
                 </div>
