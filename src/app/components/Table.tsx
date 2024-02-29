@@ -1,10 +1,32 @@
 'use client'
 import carPic from '../../../public/mini_coper.jpg';
 import Image from 'next/image';
+import { Rating } from '@mui/material';
+import React, { SyntheticEvent, useState, useEffect } from 'react';
 import actionsBtn from '../../../public/dots-vertical.svg';
 
 const Table = () => {
+  const [starValues, setStarValues] = useState<number[]>(() => {
+    const storedStarValues = localStorage.getItem('starValues');
+
+    return storedStarValues ? JSON.parse(storedStarValues) : [5, 5, 5, 5, 5, 5];
+  });
+
+  const handleChange = (index: number, event: SyntheticEvent<Element, Event>) => {
+    const { target } = event;
+    const value = Number((target as HTMLButtonElement).value);
+
+    const newStarValues = [...starValues];
+    newStarValues[index] = value;
+
+    setStarValues(newStarValues);
+  }
+
+  useEffect(() => {
+    localStorage.setItem('starValues', JSON.stringify(starValues));
+  }, [starValues]);
   return (
+    <div>
       <table>
         <thead>
           <tr>
@@ -47,6 +69,11 @@ const Table = () => {
                       <button>Available</button>
                     </td>
                     <td >
+                    <Rating
+                        name={ `rating-${i}` }
+                        value={ starValues[i] }
+                        onChange={ (event) => handleChange(i, event) }
+                      />
                     </td>
                     <td>
                       <div>
@@ -64,6 +91,7 @@ const Table = () => {
           }
         </tbody>
       </table>
+    </div>
   );
 }
 
