@@ -8,6 +8,7 @@ interface RatingProps {
 const CustomRating = ({ index }: RatingProps) => {
   const [starValues, setStarValues] = useState<number[]>(() => {
     const storedStarValues = localStorage.getItem('starValues');
+    
     return storedStarValues ? JSON.parse(storedStarValues) : [5, 5, 5, 5, 5, 5];
   });
 
