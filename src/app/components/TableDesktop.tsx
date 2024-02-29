@@ -5,8 +5,6 @@ import CarPicture from './Image';
 import CustomRating from './Rating';
 import {TableProps} from '../types/Props';
 
-
-
 const TableDesktop = ({ quantity }: TableProps) => {
   const columns = ['CAR', 'NEXT RESERVATION', 'STATUS', 'RATING', 'ACTIONS'];
 
