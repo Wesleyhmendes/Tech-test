@@ -1,9 +1,11 @@
-import Table from "./components/Table";
+import TableDesktop from "./components/TableDesktop";
+import TableMobile from "./components/TableMobile";
 
 export default function Home() {
   return (
     <>
-      <Table />
+      <TableDesktop />
+      <TableMobile />
     </>
   );
 }
