@@ -3,14 +3,17 @@ import carPic from '../../../public/mini_coper.jpg';
 import Image from 'next/image';
 import { Rating } from '@mui/material';
 import React, { SyntheticEvent, useState, useEffect } from 'react';
-import actionsBtn from '../../../public/dots-vertical.svg';
+import Actions from './Actions';
+import CarPicture from './Image';
 
-const Table = () => {
+const TableDesktop = () => {
   const [starValues, setStarValues] = useState<number[]>(() => {
     const storedStarValues = localStorage.getItem('starValues');
 
     return storedStarValues ? JSON.parse(storedStarValues) : [5, 5, 5, 5, 5, 5];
   });
+
+  const columns = ['CAR', 'NEXT RESERVATION', 'STATUS', 'RATING', 'ACTIONS'];
 
   const handleChange = (index: number, event: SyntheticEvent<Element, Event>) => {
     const { target } = event;
@@ -25,26 +28,27 @@ const Table = () => {
   useEffect(() => {
     localStorage.setItem('starValues', JSON.stringify(starValues));
   }, [starValues]);
+
+
   return (
-    <div>
-      <table>
-        <thead>
-          <tr>
-            <th>
-              CAR
-            </th>
-            <th>
-              NEXT RESERVATION
-            </th>
-            <th>
-              STATUS
-            </th>
-            <th>
-              RATING
-            </th>
-            <th>
-              ACTIONS
-            </th>
+    <div
+      className="hidden overflow-x-auto h-screen md:flex justify-center items-center"
+    >
+      <table
+        className="table-auto w-11/12 mx-auto border-collapse border rounded-lg border-gray-200"
+      >
+        <thead className="bg-[#F9FAFB]">
+          <tr className="text-left">
+            {
+              columns.map((column) => (
+                <th
+                  key={ column }
+                  className="px-4 py-2 border-gray-200 text-[#6B7280]"
+                >
+                  { column }
+                </th>
+              ))
+            }
           </tr>
         </thead>
         <tbody>
@@ -54,34 +58,26 @@ const Table = () => {
               for (let i = 0; i < 6; i += 1) {
                 lines.push(
                   <tr key={ i }>
-                    <td>
-                      <Image
-                        src={ carPic }
-                        alt="Picture of the Mini Cooper 2020"
-                        width={ 50 }
-                      />
-                      Mini Cooper 2020
+                    <td className="px-4 py-2 border border-gray-200">
+                      < CarPicture/>
                     </td>
-                    <td>
+                    <td className="px-4 py-2 border border-gray-200">
                       Jul 6 - Jul 12
                     </td>
-                    <td>
-                      <button>Available</button>
+                    <td className="px-4 py-2 border border-gray-200" >
+                      <button className="text-[#03543F] rounded-md bg-[#DEF7EC] px-2.5">
+                        Available
+                      </button>
                     </td>
-                    <td >
-                    <Rating
+                    <td className="px-4 py-2 border border-gray-200">
+                      <Rating
                         name={ `rating-${i}` }
                         value={ starValues[i] }
                         onChange={ (event) => handleChange(i, event) }
                       />
                     </td>
-                    <td>
-                      <div>
-                        <Image
-                          src={ actionsBtn }
-                          alt="Actions button"
-                        />
-                      </div>
+                    <td className="px-4 py-2 border border-gray-200 items-center">
+                      <Actions />
                     </td>
                   </tr>
                 );
@@ -95,4 +91,4 @@ const Table = () => {
   );
 }
 
-export default Table;
+export default TableDesktop;
